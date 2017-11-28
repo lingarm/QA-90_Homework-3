@@ -13,7 +13,7 @@ import java.io.File;
 public abstract class BaseTest {
     private static WebDriver getDriver() {
         String browser = Properties.getBrowser();
-        /*switch (browser) {
+        switch (browser) {
             case "chrome":
                 System.setProperty(
                         "webdriver.chrome.driver",
@@ -27,18 +27,9 @@ public abstract class BaseTest {
                         "webdriver.chrome.driver",
                         new File(BaseTest.class.getResource("/chromedriver.exe").getFile()).getPath());
                 return new ChromeDriver();
-        }*/
-        System.setProperty(
-                "webdriver.chrome.driver",
-                new File(BaseTest.class.getResource( "/chromedriver.exe").getFile()).getPath());
-        return new ChromeDriver();
+        }
     }
 
-    /*public static WebDriver getConfiguredDriver() {
-        WebDriver driver = getDriver();
-        driver.manage().window().maximize();
-        return driver;
-    }*/
     public static EventFiringWebDriver getConfiguredDriver() {
         WebDriver driver = getDriver();
         driver.manage().window().maximize();
@@ -72,17 +63,6 @@ public abstract class BaseTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).sendKeys(message);
     }
-
-    /*public static String getAlertMessage(WebDriver driver, By element) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-        String message = "";
-        try{
-            message = driver.findElement(element).getText();
-        }
-        catch(Exception ex){}
-        return message;
-    }*/
 
     public static void quitDriver(WebDriver driver) {
         driver.quit();
