@@ -1,11 +1,11 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import utils.Properties;
 
 public class LoginPage {
-    private WebDriver driver;
+    private EventFiringWebDriver driver;
 
     private By emailInput = By.id("email");
     private By passInput = By.id("passwd");
@@ -13,7 +13,7 @@ public class LoginPage {
     private String email = "webinar.test@gmail.com";
     private  String password = "Xcg7299bnSmMuRLp9ITw";
 
-    public LoginPage(WebDriver driver) {
+    public LoginPage(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 

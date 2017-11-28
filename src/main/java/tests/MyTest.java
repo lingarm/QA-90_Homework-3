@@ -1,6 +1,6 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import pages.DashBoardPage;
 import pages.LoginPage;
 import utils.BaseTest;
@@ -8,22 +8,16 @@ import utils.BaseTest;
 public class MyTest extends BaseTest {
 
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = getConfiguredDriver();
+        EventFiringWebDriver driver = getConfiguredDriver();
         LoginPage loginPage = new LoginPage(driver);
+        DashBoardPage dashBoardPage = new DashBoardPage(driver);
 
         try {
             loginPage.open();
             loginPage.fillEmailInput();
             loginPage.fillPassInput();
             loginPage.clickLoginBtn();
-        }
-        catch(Exception ex) {
-            quitDriver(driver);
-            System.out.print("Ex LoginPage");
-        }
 
-        DashBoardPage dashBoardPage = new DashBoardPage(driver);
-        try {
             dashBoardPage.clickCategory();
             dashBoardPage.clickAddCategory();
             dashBoardPage.addCategoryName();
@@ -34,10 +28,8 @@ public class MyTest extends BaseTest {
         }
         catch(Exception ex) {
             quitDriver(driver);
-            System.out.print("Ex DashBoardPage");
         }
 
-
-        //quitDriver(driver);
+        quitDriver(driver);
     }
 }

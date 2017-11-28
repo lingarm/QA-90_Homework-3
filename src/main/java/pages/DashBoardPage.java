@@ -1,16 +1,13 @@
 package pages;
 
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import utils.BaseTest;
 
 import java.sql.Timestamp;
 
 public class DashBoardPage extends BaseTest{
-    private WebDriver driver;
+    private EventFiringWebDriver driver;
 
     private By catalog = By.id("subtab-AdminCatalog");
     private By category = By.id("subtab-AdminCategories");
@@ -22,7 +19,7 @@ public class DashBoardPage extends BaseTest{
     private By sortNameBtn = By.xpath("//span[contains(text(), 'Имя')]/a[2]");
     private By myCategory = By.xpath("//td[contains(text(), '" + categoryName + "')]");
 
-    public DashBoardPage(WebDriver driver) {
+    public DashBoardPage(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 

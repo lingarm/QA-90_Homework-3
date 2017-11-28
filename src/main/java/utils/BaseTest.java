@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
@@ -33,10 +34,17 @@ public abstract class BaseTest {
         return new ChromeDriver();
     }
 
-    public static WebDriver getConfiguredDriver() {
+    /*public static WebDriver getConfiguredDriver() {
         WebDriver driver = getDriver();
         driver.manage().window().maximize();
         return driver;
+    }*/
+    public static EventFiringWebDriver getConfiguredDriver() {
+        WebDriver driver = getDriver();
+        driver.manage().window().maximize();
+        EventFiringWebDriver webDriver = new EventFiringWebDriver(driver);
+        webDriver.register(new EventHandler());
+        return webDriver;
     }
 
     public static boolean explicitWaitAndFind(WebDriver driver, By element) {
